@@ -60,4 +60,13 @@ public class User {
         }
         return null;
     }
-}
+    public boolean UserExist(String enteredUsername,String enteredPassword) throws IOException {
+        List<User> users = userfilehandler.readUsersFromFile("/Storage/Userlist.txt");
+        for (User user : users) {
+            if (user.getUsername().equals(enteredUsername) && user.getPassword().equals(enteredPassword) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+    }

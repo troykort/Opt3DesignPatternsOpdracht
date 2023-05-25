@@ -1,5 +1,6 @@
 package com.example.opt3designpatterns.Controllers;
 
+import com.example.opt3designpatterns.Model.SessionManager;
 import com.example.opt3designpatterns.Model.User;
 import com.example.opt3designpatterns.Model.Userfilehandler;
 import javafx.event.ActionEvent;
@@ -25,9 +26,14 @@ public class LoginController {
 
     @FXML
     private TextField naam;
+
+    @FXML
+    private Label statuslabel;
     User userlogin = new User();
 
     Userfilehandler userfilehandler= new Userfilehandler();
+SessionManager sessionManager=  new SessionManager();
+
 
     @FXML
     void handleLogin(ActionEvent event) throws ParseException, IOException {
@@ -43,6 +49,11 @@ public class LoginController {
             User loggedInUser = userlogin.login(enteredUsername, enteredPassword);
 
             if (loggedInUser != null) {
+                System.out.println(sessionManager.getInstance().getUserSession(loggedInUser));
+                if (sessionManager.getInstance().getUserSession(loggedInUser) != null) {
+                    System.out.println("Error: User already has an active session!");
+                    return;
+                }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Screens/Menu.fxml"));
                 Parent root = loader.load();
                 MenuController controller = loader.getController();
@@ -52,15 +63,18 @@ public class LoginController {
 //                controller.SettDarkMode();
 
 
-                Stage stage = (Stage) logIn.getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
                 stage.show();
-//                userfilehandler.writelastUserTofile(loggedInUser,"/resources/TextFiles/LastLoggedInUser.txt");
+
+                sessionManager.getInstance().addUserSession(loggedInUser, stage);
+
+//                SessionManager.getInstance().getUserSession(loggedInUser);
+
 
                 System.out.println("Login successful!");
             } else {
-//                LoginstatusLabel.setText("Verkeerde Gegevens!");
+                statuslabel.setText("Verkeerde Gegevens!");
                 System.out.println("login unsuccesfull!");
             }
         } catch (IOException e) {
@@ -83,11 +97,11 @@ public class LoginController {
             boolean usernameExists;
 
 //            usernameExists=userlogin.UserExist(enteredUsername,enteredPassword,enteredGmail);
-usernameExists=false;
+            usernameExists=userlogin.UserExist(enteredUsername,enteredPassword);
 
 
             if (usernameExists) {
-//                LoginstatusLabel.setText("User bestaat al");
+                statuslabel.setText("User bestaat al");
                 System.out.println("Somehow true");
             } else {
                 // Add new user to list and write to file

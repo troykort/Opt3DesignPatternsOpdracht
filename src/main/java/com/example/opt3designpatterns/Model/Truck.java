@@ -1,6 +1,6 @@
 package com.example.opt3designpatterns.Model;
 
-public class Truck  implements Product {
+public class Truck  implements Product,ProductFactory {
     private String username;
     private int loadCapacity;
     private int engineDisplacement;
@@ -45,5 +45,11 @@ public class Truck  implements Product {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    @Override
+    public Product createProduct(String para1, int para2 ,int para3) {
+        int convertedPara2 = Integer.parseInt(para1);
+
+        return new Truck(convertedPara2,para2);
     }
 }

@@ -7,10 +7,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -47,10 +52,26 @@ public class MenuController implements Initializable,Observer {
 
     @FXML
     private Button verhuurknop;
+    @FXML
+    private MenuItem LogOutButton;
 
     @FXML
     void LogOut(ActionEvent event) {
-
+        Stage stage = (Stage) LogOutButton.getParentPopup().getOwnerWindow();
+        SessionManager.getInstance().removeUserSession(user);
+//        openLoginPage();
+        stage.close();
+    }
+    private void openLoginPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Screens/LoginScreen.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void setCurruntLoggedInUser(User user){
         CurruntLoggedInUser.setText(" Logged in for user: "+ user.getUsername());
@@ -102,6 +123,13 @@ public class MenuController implements Initializable,Observer {
         Product car1 = new Car("Toyota", 1200, 1600);
         Product truck1 = new Truck(5000, 5000);
         Product drill1 = new Drill("Bosch", "Cordless");
+
+//        ProductFactory carFactory= new Car();
+//        Product car = carFactory.createProduct("BMW", 1500, 2000);
+//        ProductFactory carFactory= new Car();
+//        Product car = carFactory.createProduct("BMW", 1500, 2000);ProductFactory carFactory= new Car();
+//        Product car = carFactory.createProduct("BMW", 1500, 2000);ProductFactory carFactory= new Car();
+//        Product car = carFactory.createProduct("BMW", 1500, 2000);
         inventory.addProduct(car1);
         inventory.addProduct(truck1);
         inventory.addProduct(drill1);
@@ -227,7 +255,19 @@ public class MenuController implements Initializable,Observer {
                 }
 
             });
-}
+
+//        Stage userStage = SessionManager.getInstance().getUserSession(user);
+//        if (userStage != null) {
+//            userStage.show();
+//            Stage currentStage = (Stage) LogOutButton.getScene().getWindow();
+//            currentStage.close();
+//        } else {
+//            SessionManager.getInstance().addUserSession(user, (Stage) LogOutButton.getScene().getWindow());
+//        }
+//
+//        // ...
+//    }
+    }
 
 
 
@@ -252,6 +292,7 @@ public class MenuController implements Initializable,Observer {
 
 
     }
+
 
 
     @FXML

@@ -1,6 +1,6 @@
 package com.example.opt3designpatterns.Model;
 
-public class Car implements Product {
+public class Car implements Product,ProductFactory {
     private String username;
     private String brand;
     private int weight;
@@ -8,12 +8,20 @@ public class Car implements Product {
     private boolean rented;
     private boolean isOpVoorraad= true;
 
+    public Car(){
+
+    }
     public Car(String brand, int weight, int engineDisplacement) {
         this.brand = brand;
         this.weight = weight;
         this.engineDisplacement = engineDisplacement;
         this.rented = false;
     }
+
+//    public Car() {
+//
+//    }
+
     @Override
     public String getDescription() {
         return "Car - Brand: " + brand + ", Weight: " + weight + "kg, Engine Displacement: " + engineDisplacement + "cc";
@@ -53,4 +61,11 @@ public class Car implements Product {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    @Override
+    public Product createProduct(String para1, int para2 ,int para3) {
+        return new Car(para1,para2,para3);
+    }
+
+
 }

@@ -13,5 +13,6 @@
       <Button layoutX="316.0" layoutY="242.0" mnemonicParsing="false" onAction="#handleSignUp" text="Sign up" />
       <Label layoutX="120.0" layoutY="99.0" text="Username" />
       <Label layoutX="120.0" layoutY="157.0" text="Password" />
+      <Label fx:id="statuslabel" layoutX="255.0" layoutY="200.0" text="Status account" />
    </children>
 </AnchorPane>
