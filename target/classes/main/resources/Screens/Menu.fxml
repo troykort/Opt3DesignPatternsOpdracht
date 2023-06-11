@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="LabelsVerhuurd" prefHeight="669.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.opt3designpatterns.Controllers.MenuController">
+   <children>
+      <MenuBar layoutY="6.0" onDragDetected="#wijsOverZicht" prefHeight="25.0" prefWidth="465.0">
+        <menus>
+          <Menu mnemonicParsing="false" onAction="#wijsOverZicht" text="Overzicht">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" onAction="#wijsBeheer" text="Beheer">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" onAction="#LogOut" text="UitLoggen">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label fx:id="CurruntLoggedInUser" layoutX="481.0" layoutY="10.0" text="Logged in For user: " />
+      <ListView fx:id="ListSoortenProducten" layoutX="41.0" layoutY="98.0" prefHeight="539.0" prefWidth="414.0" />
+      <Label fx:id="LabelList" layoutX="51.0" layoutY="73.0" prefHeight="17.0" prefWidth="144.0" text="Soorten productenl" />
+      <TextField fx:id="HurenText" layoutX="512.0" layoutY="213.0" promptText="HoelangHuren" />
+      <Button fx:id="ToevoegenButton" layoutX="551.0" layoutY="268.0" mnemonicParsing="false" onAction="#HandleToevoegen" text="Toevoegen" />
+      <ListView fx:id="OverzichtProducten" layoutX="16.0" layoutY="130.0" prefHeight="494.0" prefWidth="523.0" />
+      <Label fx:id="isVerhuurdLabel" layoutX="756.0" layoutY="196.0" prefHeight="17.0" prefWidth="224.0" text="Is verhuurd?" />
+      <Button fx:id="stopverhuurknop" layoutX="770.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleStopverhuur" text="Stop verhuur" />
+      <TextField fx:id="naamverhuur" layoutX="855.0" layoutY="637.0" />
+      <Button fx:id="verhuurknop" layoutX="770.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleVerhuur" text="verhuur" />
+      <CheckBox fx:id="CheckBoxVerzekering" layoutX="755.0" layoutY="405.0" mnemonicParsing="false" text="CheckBox" />
+      <Label fx:id="totaleprijs" layoutX="868.0" layoutY="414.0" text="TotalePrijs" />
+   </children>
+</AnchorPane>
