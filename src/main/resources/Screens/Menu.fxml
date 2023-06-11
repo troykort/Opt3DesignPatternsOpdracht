@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="LabelsVerhuurd" prefHeight="669.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.opt3designpatterns.Controllers.MenuController">
+<AnchorPane fx:id="LabelsVerhuurd" prefHeight="669.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.opt3designpatterns.Controllers.MenuController">
    <children>
       <MenuBar layoutY="6.0" onDragDetected="#wijsOverZicht" prefHeight="25.0" prefWidth="465.0">
         <menus>

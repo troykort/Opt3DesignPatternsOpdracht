@@ -84,6 +84,7 @@ public class MenuController implements Initializable,Observer {
         isVerhuurdLabel.setVisible(false);
 
         inventory.registerObserver(this);
+        inventory.notifyObservers();
 
 
         CheckBoxVerzekering.selectedProperty().addListener(new ChangeListener<Boolean>() {
